@@ -14,8 +14,8 @@ export class VideoList extends Component {
     super(props);
     this.state = {
       dataSource: null,
-      _data: null,
-      page: 1
+      page: 1,
+      _data: null
     };
     // this.onEndReachedCalledDuringMomentum = true;
   }
