@@ -33,6 +33,10 @@ export class Home extends Component {
     // this.props.navigation.navigate('ListVideos');
   }
   componentWillReceiveProps(nextprops) {
+    console.log('errhome', nextprops.err)
+    if (nextprops.data.err !== undefined) {
+      nextprops.navigation.navigate("error");
+    }
     if (nextprops.data.list !== undefined && this.state.tolist === false) {
       nextprops.navigation.navigate('PlayVideo', { id: nextprops.data.list[0].id });
       this.setState({ tolist: true, randomvideo: false });
@@ -132,7 +136,7 @@ centering: {
 });
 const mapStateToProps = state =>{
   const {data,err,randomvideo} = state.Videoreducers;
-  console.log('lose',state.Videoreducers)
+  console.log('lose',state.Videoreducers.err)
   return {data,err,randomvideo};
 }
 const mapDispatchToProps = (dispatch)=>{

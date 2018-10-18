@@ -9,8 +9,8 @@ buildscript {
         supportLibVersion = "27.1.1"
     }
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
@@ -19,16 +19,22 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
+def googlePlayServicesVersion = '11.8.0'
 allprojects {
     repositories {
         mavenLocal()
-        jcenter()
+        jcenter() 
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
         google()
+        configurations.all {
+        resolutionStrategy {
+               // react-native-admob
+               force "com.google.android.gms:play-services-ads:$googlePlayServicesVersion"
+           }
+       }
     }
 }
 

@@ -25,9 +25,14 @@ export class VideoList extends Component {
   onEndReache = () => {
     this.setState({ page: this.state.page + 1 });
     this.props.MoreVideos(this.state.page);
-    console.log("end");
   };
   componentWillReceiveProps(nextProps) {
+    
+    console.log("data", nextProps.err);
+    if (nextProps.err !== undefined) {
+      console.log("err44", nextProps.err);
+      this.props.navigation.navigate("error");
+    }
     if (
       nextProps.data.list !== this.props.data.list &&
       this.props.data.list !== null
@@ -60,14 +65,6 @@ export class VideoList extends Component {
     } else
       return (
         <Container>
-          {/* <Content
-         style={{flex: 1}}
-  contentContainerStyle={{flex: 1}}> */}
-          {/* <List dataArray={this.state.dataSource}
-            renderRow={item =>
-                <VideoCard img={ item.thumbnail_url } views ={item.views_total} />
-            }>
-          </List>   */}
           <FlatList
             style={{ flex: 1 }}
             data={this.state.dataSource}
@@ -123,7 +120,7 @@ const styles = StyleSheet.create({
 });
 const mapStateToProps = (state) => {
   const { loading, data, err, loadingMore } = state.Videoreducers;
-  console.log("lisy", state.Videoreducers.loadingMore);
+  console.log("lisy", state.Videoreducers.err);
   return { loading, data, err, loadingMore };
 };
 const mapDispatchToProps = (dispatch) => {

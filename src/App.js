@@ -4,6 +4,7 @@ import { applyMiddleware, createStore, compose } from 'redux'
 import VideoPlayer from './component/VideoPlayer'
 import VideoList from './component/VideoList'
 import Home from './component/Home'
+import Error from './component/Error'
 import Reducer from './reducers/Reducer'
 import thunk from 'redux-thunk'
 import { createStackNavigator } from 'react-navigation'
@@ -12,7 +13,8 @@ import { StyleSheet, NetInfo, Text, TouchableHighlight, Image, View } from 'reac
 const Navig = createStackNavigator({
   home: { screen: Home },
   ListVideos: { screen: VideoList },
-  PlayVideo: { screen: VideoPlayer }
+  PlayVideo: { screen: VideoPlayer },
+  error: { screen: Error }
 })
 let store = createStore(
   Reducer, // custom reducers
@@ -27,7 +29,6 @@ export default class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      name: 'hello',
       connected: true
     }
   }
@@ -44,7 +45,8 @@ export default class App extends Component {
     })
   }
   componentDidMount () {
-    NetInfo.isConnected.addEventListener('connectionChange', () =>{  this.checkConnection()})
+    NetInfo.isConnected.addEventListener('connectionChange', () => {
+      this.checkConnection()})
     console.log(NetInfo.isConnected)
   }
 
@@ -59,7 +61,8 @@ export default class App extends Component {
           <Text style={styles.errordesc}>
             Please check you internet connection.
           </Text>
-          <TouchableHighlight onPress={() => {this.checkConnection()}}>
+          <TouchableHighlight onPress={() => {
+                                         this.checkConnection()}}>
             <Text style={styles.retry}>
               Retry
             </Text>

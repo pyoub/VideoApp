@@ -5,6 +5,12 @@ import {
   ToastAndroid,
   Dimensions
 } from "react-native";
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded
+} from "react-native-admob";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Button, Text, Header } from "native-base";
@@ -54,7 +60,9 @@ export class VideoPlayer extends Component {
            //     ListIds.push(this.state.Id)
            //     ()=>{ WebViewRef && WebViewRef.reload();}
            // }
-           console.log("before", nextProps);
+           if (nextProps.err !== undefined) {
+             nextProps.navigation.navigate("error");
+           }
            if (nextProps.data.list !== undefined && nextProps.data.list.length > 0 && this.state.Next) {
              let data = nextProps.data.list;
              var rand = 1 + Math.random() * (7 - 1);
@@ -88,7 +96,9 @@ export class VideoPlayer extends Component {
            } else ToastAndroid.showWithGravity("Click Next", ToastAndroid.SHORT, ToastAndroid.CENTER);
          }
          render() {
-           return <View style={{ top: 5, height: this.state.height }}>
+           return(
+           <View>
+             <View style={{ top: 5, height: this.state.height }}>
                <WebView ref={WEBVIEW_REF => (WebViewRef = WEBVIEW_REF)} source={{ uri: "http://www.dailymotion.com/embed/video/" + this.state.Id }} automaticallyAdjustContentInsets={false} onLoadStart={() => this.showSpinner()} onLoadEnd={() => this.hideSpinner()} />
                <View style={{ display: this.state.display, top: 5, width: "100%", height: "20%", flexDirection: "row", justifyContent: "space-between" }}>
                  <Button success onPress={this.handleClickPrev.bind(this)} style={{ width: "50%" }}>
@@ -99,7 +109,9 @@ export class VideoPlayer extends Component {
                  </Button>
                </View>
                {this.state.visible && <ActivityIndicator style={{ position: "absolute", top: "45%", left: "45%" }} size="large" />}
-             </View>;
+             </View>
+             <AdMobBanner adSize="fullBanner" adUnitID="ca-app-pub-6386728326284518/4308777571" testDevices={[AdMobBanner.simulatorId]} onAdFailedToLoad={error => console.error(error)} />
+           </View>);
            // Later on in your styles..
          }
        }

@@ -1,7 +1,6 @@
 import * as Actions from '../actions/ActionsType'
 
 const Videoreducers = (state = {data : {},err:undefined,loading:false,loadingMore:false,randomvideo:false}, action) => {
-    console.log('action', action.data);
     switch (action.type) {
         case Actions.SERVICEPENDING:
             return Object.assign({}, state, {
