@@ -3,13 +3,12 @@ package com.videoapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.sbugert.rnadmob.RNAdMobPackage;
-import com.brentvatne.react.ReactVideoPackage;
+import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-
+import io.invertase.firebase.admob.RNFirebaseAdMobPackage; 
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,8 +24,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNAdMobPackage(),
-            new ReactVideoPackage()
+          new RNFirebasePackage(),
+          new RNFirebaseAdMobPackage()
       );
     }
 

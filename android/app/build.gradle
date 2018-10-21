@@ -137,11 +137,17 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-admob')
-    compile project(':react-native-video')
-    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':react-native-firebase')
+    // Firebase dependencies
+    
+    implementation "com.google.android.gms:play-services-base:15.0.1"
+    implementation "com.google.firebase:firebase-ads:15.0.1"
+    implementation "com.google.firebase:firebase-core:16.0.3"
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    // implementation 'com.facebook.android:audience-network-sdk:5.0.0'
+    // implementation 'com.google.ads.mediation:facebook:5.0.0.1'
+    implementation fileTree(dir: "libs", include: ["*.jar"])
 }
 
 // Run this once to be able to run the application with BUCK
@@ -150,3 +156,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+apply plugin: 'com.google.gms.google-services'

@@ -2,6 +2,7 @@ package com.videoapp;
 
 import com.facebook.react.ReactActivity;
 
+
 public class MainActivity extends ReactActivity {
 
     /**

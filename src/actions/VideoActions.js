@@ -4,7 +4,7 @@ import axios from 'axios'
 export const CallApi = () => {
   return dispatch => {
     dispatch(ServicePending())
-    axios.get('https://api.dailymotion.com/videos?fieldss=id,thumbnail_url,views_total,&search=twerk&shorter_than=6&sort=random&verified=1&limit=10')
+    axios.get('https://api.dailymotion.com/videos?fields=id,thumbnail_url,views_total,&search=twerk&shorter_than=6&sort=random&verified=1&limit=10')
       .then(result => {
         dispatch(ServiceSucces(result.data))
       }).catch(err => {
