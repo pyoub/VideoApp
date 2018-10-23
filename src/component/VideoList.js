@@ -77,7 +77,7 @@ export class VideoList extends Component {
               />
             )}
             onEndReached={this.onEndReache.bind(this)}
-            onEndReachedThreshold={1}
+            onEndReachedThreshold={0.5}
             keyExtractor={(item) => item.id}
             directionalLockEnabled={true}
 

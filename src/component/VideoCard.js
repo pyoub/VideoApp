@@ -7,7 +7,7 @@ export default class VideoCard extends Component {
     const { navigate } = this.props.navigation;
     return (
       <TouchableWithoutFeedback onPress={() =>
-        navigate('PlayVideo', { id: this.props.id })}>
+      { navigate('PlayVideo', { id: this.props.id }); console.log('press', this.props.id)}}>
           <Card>
             <CardItem cardBody>
               <Image style={{position: "absolute"}} source={{uri: this.props.img}} style={{height: 200, width: null, flex: 1}}/>
